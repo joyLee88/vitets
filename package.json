@@ -13,10 +13,12 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@types/fastclick": "^1.0.30",
     "@types/node": "^18.8.3",
     "axios": "^1.1.2",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.0-rc.10",
+    "postcss-px-to-viewport": "^1.1.1",
     "vant": "^3.6.4",
     "vue": "^3.2.25",
     "vue-router": "4"

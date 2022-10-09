@@ -5,6 +5,11 @@ import { resolve } from "path";
 import viteCompression from "vite-plugin-compression";
 import Components from "unplugin-vue-components/vite";
 import { VantResolver } from "unplugin-vue-components/resolvers";
+import pxtovw from "postcss-px-to-viewport";
+const basePxToVw = pxtovw({
+  viewportWidth: 750,
+  viewportUnit: "vw",
+});
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,6 +38,9 @@ export default defineConfig({
       scss: {
         additionalData: '@import "@/assets/style/main.scss";',
       },
+    },
+    postcss: {
+      plugins: [basePxToVw],
     },
   },
   //启动服务配置
