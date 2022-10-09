@@ -12,6 +12,7 @@ const count = ref(0);
 <template>
   <h1>{{ msg }}</h1>
   <div>{{ mainStore.name }}</div>
+  <van-button type="primary">登录</van-button>
 </template>
 
 <style scoped>
