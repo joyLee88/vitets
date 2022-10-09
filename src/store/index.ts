@@ -1,9 +1,9 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
 export const useMainStore = defineStore({
-  id: 'mian',
+  id: "mian",
   state: () => ({
-    name: '超级管理员',
+    name: "超级管理员",
   }),
   getters: {
     nameLength: (state) => state.name.length,

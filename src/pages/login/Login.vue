@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useMainStore } from "@/store/index"
+import { ref } from "vue";
+import { useMainStore } from "@/store/index";
 
-const mainStore = useMainStore()
+const mainStore = useMainStore();
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 
-const count = ref(0)
+const count = ref(0);
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-  <div>{{mainStore.name}}</div>
+  <div>{{ mainStore.name }}</div>
 </template>
 
 <style scoped>
