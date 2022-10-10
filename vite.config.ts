@@ -53,7 +53,7 @@ export default defineConfig(({ mode }) => {
            */
           postcsspxtoviewport8plugin({
             unitToConvert: "px", // 需要转换的单位，默认为"px"
-            viewportWidth: 1920, // 视窗的宽度，对应pc设计稿的宽度，一般是1920
+            viewportWidth: 375, // 视窗的宽度，对应pc设计稿的宽度，一般是1920
             // viewportHeight: 1080,// 视窗的高度，对应的是我们设计稿的高度
             unitPrecision: 6, // 单位转换后保留的精度
             propList: [

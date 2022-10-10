@@ -1,34 +1,28 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useMainStore } from "@/store/index";
 
+const router = useRouter();
 const mainStore = useMainStore();
 
 defineProps<{ msg: string }>();
 
-const count = ref(0);
+const handleTo = () => {
+  router.push("home");
+};
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-  <div>{{ mainStore.name }}</div>
-  <van-button type="primary">登录</van-button>
+  <div class="tip">{{ mainStore.name }}</div>
+  <van-button type="primary" @click="handleTo">登录</van-button>
 </template>
 
-<style scoped>
-a {
-  color: #42b983;
-}
-
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
+<style scoped lang="scss">
+.tip {
+  color: $test-color;
+  font-size: 21px;
+  padding: 20px 0;
 }
 </style>
