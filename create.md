@@ -1121,6 +1121,152 @@ FastClick.attach(document.body);
 ```
 
 6. 实现项目主题切换方案
+   SCSS + mixin + 类名切换
+   运用 SCSS 的混合+CSS 类名切换，其原理主要是将使用到 mixin 混合的地方编译为固定的 CSS 以后，再通过类名切换去做样式的覆盖，实现方案如下：
+
+variable.scss
+
+```js
+/* 字体定义规范 */
+$font_samll:12Px;
+$font_medium_s:14Px;
+$font_medium:16Px;
+$font_large:18Px;
+
+/* 背景颜色规范(主要) */
+$background-color-theme: #d43c33;//背景主题颜色默认(网易红)
+$background-color-theme1: #42b983;//背景主题颜色1(QQ绿)
+$background-color-theme2: #333;//背景主题颜色2(夜间模式)
+
+/* 背景颜色规范(次要) */
+$background-color-sub-theme: #f5f5f5;//背景主题颜色默认(网易红)
+$background-color-sub-theme1: #f5f5f5;//背景主题颜色1(QQ绿)
+$background-color-sub-theme2: #444;//背景主题颜色2(夜间模式)
+
+/* 字体颜色规范(默认) */
+$font-color-theme : #666;//字体主题颜色默认(网易)
+$font-color-theme1 : #666;//字体主题颜色1(QQ)
+$font-color-theme2 : #ddd;//字体主题颜色2(夜间模式)
+/* 字体颜色规范(激活) */
+$font-active-color-theme : #d43c33;//字体主题颜色默认(网易红)
+$font-active-color-theme1 : #42b983;//字体主题颜色1(QQ绿)
+$font-active-color-theme2 : #ffcc33;//字体主题颜色2(夜间模式)
+
+/* 边框颜色 */
+$border-color-theme : #d43c33;//边框主题颜色默认(网易)
+$border-color-theme1 : #42b983;//边框主题颜色1(QQ)
+$border-color-theme2 : #ffcc33;//边框主题颜色2(夜间模式)
+
+/* 字体图标颜色 */
+$icon-color-theme : #ffffff;//边框主题颜色默认(网易)
+$icon-color-theme1 : #ffffff;//边框主题颜色1(QQ)
+$icon-color-theme2 : #ffcc2f;//边框主题颜色2(夜间模式)
+$icon-theme : #d43c33;//边框主题颜色默认(网易)
+$icon-theme1 : #42b983;//边框主题颜色1(QQ)
+$icon-theme2 : #ffcc2f;//边框主题颜色2(夜间模式)
+```
+
+mixin.scss
+
+```js
+@import "./variable.scss";
+
+@mixin bg_color(){
+  background: $background-color-theme;
+  [data-theme=theme1] & {
+    background: $background-color-theme1;
+  }
+  [data-theme=theme2] & {
+    background: $background-color-theme2;
+  }
+}
+@mixin bg_sub_color(){
+  background: $background-color-sub-theme;
+  [data-theme=theme1] & {
+    background: $background-color-sub-theme1;
+  }
+  [data-theme=theme2] & {
+    background: $background-color-sub-theme2;
+  }
+}
+@mixin font_color(){
+  color: $font-color-theme;
+  [data-theme=theme1] & {
+    color: $font-color-theme1;
+  }
+  [data-theme=theme2] & {
+    color: $font-color-theme2;
+  }
+}
+@mixin font_active_color(){
+  color: $font-active-color-theme;
+  [data-theme=theme1] & {
+    color: $font-active-color-theme1;
+  }
+  [data-theme=theme2] & {
+    color: $font-active-color-theme2;
+  }
+}
+
+@mixin icon_color(){
+    color: $icon-color-theme;
+    [data-theme=theme1] & {
+        color: $icon-color-theme1;
+    }
+    [data-theme=theme2] & {
+        color: $icon-color-theme2;
+    }
+}
+@mixin border_color(){
+  border-color: $border-color-theme;
+  [data-theme=theme1] & {
+    border-color: $border-color-theme1;
+  }
+  [data-theme=theme2] & {
+    border-color: $border-color-theme2;
+  }
+}
+```
+
+然后使用
+
+```js
+<template>
+  <div class="header" @click="changeTheme">
+    <div class="header-left">
+      <slot name="left">左边</slot>
+    </div>
+    <slot name="center" class="">中间</slot>
+    <div class="header-right">
+      <slot name="right">右边</slot>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'Header',
+    methods: {
+      changeTheme () {
+        document.documentElement.setAttribute('data-theme', 'theme1')
+      }
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+@import "../assets/css/variable";
+@import "../assets/css/mixin";
+.header{
+  width: 100%;
+  height: 100px;
+  // variable变量
+  font-size: $font_medium;
+  // mixin方法
+  @include bg_color();
+}
+</style>
+```
 
 7. mock
 

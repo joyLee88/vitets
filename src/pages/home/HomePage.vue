@@ -4,9 +4,17 @@ import { ref } from "vue";
 defineProps<{ msg: string }>();
 
 const count = ref(0);
+const num = ref(0);
+const handleChange = () => {
+  num.value++;
+  const t = num.value % 3;
+  const s = t === 0 ? "" : t;
+  document.documentElement.setAttribute("data-theme", `theme${s}`);
+};
 </script>
 
 <template>
+  <van-button type="primary" @click="handleChange">主题切换</van-button>
   <h1>{{ msg }}</h1>
 
   <p>
@@ -33,9 +41,10 @@ const count = ref(0);
   </p>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 a {
-  color: #42b983;
+  @include font_color();
+  @include bg_color();
 }
 
 label {

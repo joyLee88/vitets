@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/assets/style/main.scss";',
+          additionalData: '@import "@/assets/style/mixin.scss";',
         },
       },
       // 处理打包出现警告 "@charset" must be the first

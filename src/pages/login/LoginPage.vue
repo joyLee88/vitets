@@ -21,7 +21,6 @@ const handleTo = () => {
 
 <style scoped lang="scss">
 .tip {
-  color: $test-color;
   font-size: 21px;
   padding: 20px 0;
 }
