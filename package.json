@@ -19,6 +19,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.0-rc.10",
     "postcss-px-to-viewport": "^1.1.1",
+    "postcss-px-to-viewport-8-plugin": "^1.1.5",
     "vant": "^3.6.4",
     "vue": "^3.2.25",
     "vue-router": "4"
